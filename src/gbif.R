@@ -30,7 +30,7 @@ filterData<-d %>%
 #above gets rid of n/a spots in long/lat 
 filterData<-filterData%>%
   filter(countryCode %in% c('US','CA','MX'))
-#above keeps all data collect from US, CA, and MX
+#above keeps all data collected from US, CA, and MX
 filterData<-filterData%>%
   filter(!basisOfRecord %in% c('FOSSIL_SPECIMEN','LIVING_SPECIMEN'))
 #above gets rid of fossil records and zoo records 
@@ -38,5 +38,17 @@ filterData<-filterData%>%
   cc_sea(lon='decimalLongitude',lat='decimalLatitude')
 #gets rid of records from the sea 
 
+#remove duplicates 
+filterData<-filterData%>%
+  distinct(decimalLatitude,decimalLongitude,speciesKey,datasetKey,.keep_all=TRUE)
+#or all together 
+# cleanData<-d%>%
+#   filter(!is.na(decimalLatitude),!is.na(decimalLongitude))%>%
+#   filter(countryCode %in% c('US','CA','MX'))%>%
+#   filter(!basisOfRecord %in% c('FOSSIL_SPECIMEN','LIVING_SPECIMEN'))%>%
+#   cc_sea(lon='decimalLongitude',lat='decimalLatitude')%>%
+#   distinct(decimalLatitude,decimalLongitude,speciesKey,datasetKey,.keep_all=TRUE)
+  
+  
 
 
