@@ -48,7 +48,7 @@ filterData<-filterData%>%
 #   filter(!basisOfRecord %in% c('FOSSIL_SPECIMEN','LIVING_SPECIMEN'))%>%
 #   cc_sea(lon='decimalLongitude',lat='decimalLatitude')%>%
 #   distinct(decimalLatitude,decimalLongitude,speciesKey,datasetKey,.keep_all=TRUE)
-  
-  
+
+write.csv(filterData,'data/cleanedData.csv')
 
 
